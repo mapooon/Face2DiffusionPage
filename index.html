@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="">
+  <meta name="keywords" content="Text-to-Image Diffusion Models, StableDiffusion, Personalization">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Face2Diffusion for Fast and Editable Face Personalization </title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Face2Diffusion for Fast and Editable Face Personalization</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://mapooon.github.io/">Kaede Shiohara</a> and</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=rE9iY5MAAAAJ&hl=en">Toshihiko Yamasaki</a></span>
+            
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">The University of Tokyo &nbsp; <br>Conference on Computer Vision and Pattern Recognition (CVPR) 2024</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2403.05094"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              
+             
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/mapooon/Face2Diffusion"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/teaser.png" alt="Banner image" height="100%">
+        <h2 class="subtitle has-text-centered"><br>
+          Face2Diffusion satisfies challenging text prompts that include multiple conditions while preserving input face identities without individual test-time tuning.
+        </h2>
+    </div>
+    
+  </div>
+</section>
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Face personalization aims to insert specific faces, taken from images, into pretrained text-to-image diffusion models. 
+            However, it is still challenging for previous methods to preserve both the identity similarity and editability due to overfitting to training samples. 
+            In this paper, we propose Face2Diffusion (F2D) for high-editability face personalization. 
+            The core idea behind F2D is that removing identity-irrelevant information from the training pipeline prevents the overfitting problem and improves editability of encoded faces. 
+            F2D consists of the following three novel components: 1) Multi-scale identity encoder provides well-disentangled identity features while keeping the benefits of multi-scale information, which improves the diversity of camera poses. 
+            2) Expression guidance disentangles face expressions from identities and improves the controllability of face expressions. 
+            3) Classguided denoising regularization encourages models to learn how faces should be denoised, which boosts the textalignment of backgrounds. 
+            Extensive experiments on the FaceForensics++ dataset and diverse prompts demonstrate our method greatly improves the trade-off between the identity- and text-fidelity compared to previous state-of-theart methods.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+  
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Attribute leakage problem in multi-scale features</h2>
+        <p>
+          Multi-scale identity features are beneficial for high-fidelity face personalization; 
+          however, the direct use of multi-scale features cause an overfitting problem to input samples in terms of camera poses.
+          We examine identity similarity distributions between anchor-positive and anchor-negative.
+          The result indicates that the features from ArcFace's shallow features are entangled with attributes, which makes the camera pose of generated images fixed.
+          To solve this problem, we propose MSID encoder where multi-scale features are disentangled in its pretraining stage.
+        </p>
+        <img src="static/images/overview.jpg" alt="Banner image" height="100%">
+      </div>
+    </div> -->
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Face2Diffusion</h2>
+        <img src="static/images/overview.png" alt="Banner image" height="100%">
+        <p>
+          (a) During training, we input a face image into our novel multi-scale identity encoder fid and
+          an off-the-shell 3D face reconstruction model f<sub>exp</sub> to extract identity and expression features, respectively. The concatenated feature is
+          projected into the text space as a word embedding S<sup>*</sup> by a mapping network fmap. The input image is also encoded by VAE's encoder E
+          and then a Gaussian noise ε is added to it. We constrain the denoised latent feature map to be the original one in the foreground and to be a
+          class-guided denoised result in the background. (b) During inference, the expression feature is replaced with an unconditional vector  v&tilde;<sub>exp</sub>
+          to diversify face expressions of generated images. After injecting the face embedding S<sup>*</sup> into an input text, the original denoising loop of
+          StableDiffusion is performed to generate an image conditioned by the input face identity and text.
+        </p>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Comparison with Previous Methods</h2>
+        <img src="static/images/comparison.png" alt="Banner image" height="100%">
+        <p>
+          Our method generates authentic images aligned with input texts and identities
+          in challenging scenes whereas previous methods compromise an either. 
+        </p>
+      </div>
+    </div>
+      
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Ablation Study</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <img src="static/images/ablation.png" alt="Banner image" height="100%">
+            <p>
+              (a) Our MSID encoder disentangles camera poses while keeping the identity similarity. (b) Our expression guidance mitigates overfitting to input face expressions.
+              (c) Our CGDR improves the text-fidelity mainly on backgrounds.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
+
+    
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{shiohara2024face2diffusion,
+      title={Face2Diffusion for Fast and Editable Face Personalization},
+      author={Shiohara, Kaede and Yamasaki, Toshihiko},
+      booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+      year={2024}
+    }</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
